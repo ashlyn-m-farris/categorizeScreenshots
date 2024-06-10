@@ -9,7 +9,7 @@ def formatDates(text):
         dates = []
         months = months_pattern()
         for line in re.split('\n', text):
-                #MM/DD/YY or M/D/Y or MM/DD/YYYY or with - or . or Month(Mon) DD, YYYY
+                #MM/DD/YY or M/D/Y or MM/DD/YYYY or with - or . or Month(Mon) DD, YYYY or Month DD
                 date = re.findall('\d+(?:/|-|.)\d+(?:/|-|.)\d+|' +months+ '(?: \d+, \d+)|' +months+ '(?: \d+)' , line)
                 #HH:MM
                 time = re.findall('\d+:\d+', line)
@@ -29,13 +29,12 @@ def formatDates(text):
         return(dates)
 
 def hmFormat(text):
-        h_m = re.findall('\d+(?:m|h)|\d+(?:M|H)', text)
-        return(h_m)
+        return re.findall('\d+(?:m|h|d)', text)
 
 def findDates(listOfLines):
         # sourcery skip: for-append-to-extend, simplify-generator
         if len(listOfLines) <= 0:
-                return 'No Dates Found'
+                return []
         result = []
         for line in listOfLines:
                 dates = datefinder.find_dates(line)

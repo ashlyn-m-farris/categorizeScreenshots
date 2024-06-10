@@ -21,8 +21,8 @@ print('\n')
 
 #Output possible dates
 print('Possible Time-frames Are:')
-if (dates == "No Dates Found"):
-    print(dates)
+if (len(dates) == 0):
+    print("No Dates Found")
 else:
     for date in dates:
         print(date)
@@ -34,7 +34,7 @@ if len(h_m) > 0:
 print('\n')
 
 #DetermineStructure
-print("The Category is: " + categorize(dates, h_m, authors))
+print(f"The Category is: {categorize(dates, h_m, authors)}")
 
 
 

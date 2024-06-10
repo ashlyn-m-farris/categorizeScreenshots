@@ -9,13 +9,12 @@ def common_words():
     start = '(?:'
     end = ')'
 
-    file = open("20k.txt", "r")
-    while True:
-        word=file.readline().replace('\n', '')
-        if not word:
-            break
-        words.append(word)
-    file.close()
+    with open("20k.txt", "r") as file:
+        while True:
+            if word := file.readline().replace('\n', ''):
+                words.append(word)
+            else:
+                break
     mid1 = '\s|[^(?:@|©)]\s'.join(words)
-    
-    return("{}{}{}".format(start, mid1, end))
+
+    return f"{start}{mid1}{end}"
