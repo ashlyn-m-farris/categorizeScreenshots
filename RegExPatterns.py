@@ -15,6 +15,6 @@ def common_words():
                 words.append(word)
             else:
                 break
-    mid1 = '\s|[^(?:@|©)]\s'.join(words)
+    mid = '\\b|\\b(?<![@|©])'.join(words)
 
-    return f"{start}{mid1}{end}"
+    return f"{start}{mid}{end}"

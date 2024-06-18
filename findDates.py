@@ -9,23 +9,25 @@ def formatDates(text):
         dates = []
         months = months_pattern()
         for line in re.split('\n', text):
-                #MM/DD/YY or M/D/Y or MM/DD/YYYY or with - or . or Month(Mon) DD, YYYY or Month DD
-                date = re.findall('\d+(?:/|-|.)\d+(?:/|-|.)\d+|' +months+ '(?: \d+, \d+)|' +months+ '(?: \d+)' , line)
-                #HH:MM
-                time = re.findall('\d+:\d+', line)
-                #AM or PM or am or pm
-                am_pm = re.findall('AM|PM|am|pm', line)
+                words = re.findall(common_words(), line)
+                if not words:
+                        #MM/DD/YY or M/D/Y or MM/DD/YYYY or with - or . or Month(Mon) DD, YYYY or Month DD
+                        date = re.findall('\d+(?:/|-|.)\d+(?:/|-|.)\d+|' +months+ '(?: \d+, \d+)|' +months+ '(?: \d+)' , line)
+                        #HH:MM
+                        time = re.findall('\d+:\d+', line)
+                        #AM or PM or am or pm
+                        am_pm = re.findall('AM|PM|am|pm', line)
 
-                if len(date) > 0 and len(time) > 0 and len(am_pm) > 0:
-                        dates.append(f'{listString(date)} {listString(time)} {listString(am_pm)}')
-                elif len(date) > 0 and len(time) > 0:
-                        dates.append(f'{listString(date)} {listString(time)}')
-                elif len(time) > 0 and len(am_pm) > 0:
-                        dates.append(f'{listString(time)} {listString(am_pm)}')
-                elif len(time) > 0:
-                        dates.append(listString(time))
-                elif len(date) > 0:
-                        dates.append(listString(date))
+                        if len(date) > 0 and len(time) > 0 and len(am_pm) > 0:
+                                dates.append(f'{listString(date)} {listString(time)} {listString(am_pm)}')
+                        elif len(date) > 0 and len(time) > 0:
+                                dates.append(f'{listString(date)} {listString(time)}')
+                        elif len(time) > 0 and len(am_pm) > 0:
+                                dates.append(f'{listString(time)} {listString(am_pm)}')
+                        elif len(time) > 0:
+                                dates.append(listString(time))
+                        elif len(date) > 0:
+                                dates.append(listString(date))
         return(dates)
 
 def hmFormat(text):
