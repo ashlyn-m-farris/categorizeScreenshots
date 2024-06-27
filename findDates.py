@@ -12,7 +12,7 @@ def formatDates(text):
                 words = re.findall(common_words(), line)
                 if not words:
                         #MM/DD/YY or M/D/Y or MM/DD/YYYY or with - or . or Month(Mon) DD, YYYY or Month DD
-                        date = re.findall('\d+(?:/|-|.)\d+(?:/|-|.)\d+|' +months+ '(?: \d+, \d+)|' +months+ '(?: \d+)' , line)
+                        date = re.findall('\d+(?:/|-|.)\d+(?:/|-|.)\d+|' +months+ '(?: \d+, \d+)|' +months+ '(?: \d+)|\d+ ' +months+ ' \d+' , line)
                         #HH:MM
                         time = re.findall('\d+:\d+', line)
                         #AM or PM or am or pm

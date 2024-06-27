@@ -3,6 +3,7 @@ from OCR import *
 from findAuthors import *
 from categorize import *
 from groupTriples import *
+from determinePlatform import *
 
 
 
@@ -12,14 +13,13 @@ results = OCR(img)
 print(results)
 
 authors = findAuthors(results)
+print(authors)
 dates = findDates(formatDates(results))
 h_m = hmFormat(results)
 
-print(authors)
-print(authorLines(results))
-
 #DetermineStructure
-print(f"The Category is: {categorize(dates, h_m, authors)}\n")
+print(f"The Internal category is {categorize(dates, h_m, authors)}.")
+print(f"The Platform is {determinePlatform(results)}.")
 
 triples = groupTriples(results, authorLines(results))
 i = 1
