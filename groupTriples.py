@@ -2,7 +2,7 @@ import re
 from conversions import *
 
 def groupTriples(text, lines):
-    text = text.replace('(\w', "").replace('\)', "").replace('[', "").replace(']', "").replace('\\', '').replace('|', '')
+    text = text.replace('(', "").replace(')', "").replace('[', "").replace(']', "").replace('\\', '').replace('|', '')
     listOfGroups = []
     i = 1
     while i < len(lines):
