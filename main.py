@@ -22,12 +22,11 @@ print(f"The Internal category is {categorize(dates, h_m, authors)}.")
 print(f"The Platform is {determinePlatform(results)}.")
 
 triples = groupTriples(results, authorLines(results))
-i = 1
-for triple in triples:
+for i, triple in enumerate(triples, start=1):
     authors = findAuthors(triple)
     dates = findDates(formatDates(triple))
     h_m = hmFormat(triple)
-    
+
     print(f'**********************BEGIN GROUP {i}***************************')
     print(triple)
 
@@ -43,10 +42,9 @@ for triple in triples:
     else:
         for date in dates:
             print(date)
-            
+
     if len(h_m) > 0:
         for time in h_m:
             print(time)
     print(f'***********************END Group {i}****************************')
-    i += 1
     print('\n')

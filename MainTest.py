@@ -11,7 +11,7 @@ original_stdout = sys.stdout
 # Redirect stdout to a file
 with open('output.txt', 'w') as f: 
     sys.stdout = f
-    with open("screenshots.txt", "r") as file:
+    with open("DGScreenshots.txt", "r") as file:
         while True:
             if not (path := file.readline().replace('\n', '')):
                 break
@@ -20,14 +20,14 @@ with open('output.txt', 'w') as f:
             print('\n')
             #Get image input, pass to OCR and output OCR results
             results = OCR(path)
-            print(results)
+            #print(results)
 
             authors = findAuthors(results)
             dates = findDates(formatDates(results))
             h_m = hmFormat(results)
 
             #DetermineStructure
-            print(f"The category is: {categorize(dates, h_m, authors)}")
+            print({categorize(dates, h_m, authors)})
 
             triples = groupTriples(results, authorLines(results))
             i = 1
@@ -36,25 +36,25 @@ with open('output.txt', 'w') as f:
                 dates = findDates(formatDates(triple))
                 h_m = hmFormat(triple)
                 
-                print(f'**********************BEGIN GROUP {i}***************************')
-                print(triple)
+                #print(f'**********************BEGIN GROUP {i}***************************')
+                #print(triple)
 
-                print('Author:')
-                for author in authors:
-                    print(author)
+                #print('Author:')
+                #for author in authors:
+                    #print(author)
 
-                print('\n')
+                #print('\n')
 
-                print('Date:')
-                if (len(dates) == 0):
-                    print('No Full Timestamp')
-                else:
-                    for date in dates:
-                        print(date)
+                #print('Date:')
+                #if (len(dates) == 0):
+                    #print('No Full Timestamp')
+                #else:
+                    #for date in dates:
+                       #print(date)
                         
-                if len(h_m) > 0:
-                    for time in h_m:
-                        print(time)
-                print(f'***********************END Group {i}****************************')
+                #if len(h_m) > 0:
+                    #for time in h_m:
+                        #print(time)
+                #print(f'***********************END Group {i}****************************')
                 i += 1
-                print('\n')
+                #print('\n')
